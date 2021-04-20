@@ -394,9 +394,9 @@ button:focus {
 
 .banner_area {
   position: relative;
-  background: url(../img/banner/banner.jpg) no-repeat center center;
+  background-color: black;
   z-index: 1;
-  min-height: 392px;
+  height: 80px;
   padding-top: 0 !important; }
   .banner_area .banner_inner {
     position: relative;
@@ -409,8 +409,7 @@ button:focus {
       left: 0;
       right: 0;
       top: 0;
-      bottom: 0;
-      background: rgba(0, 35, 71, 0.8); }
+      bottom: 0; }
     .banner_area .banner_inner .banner_content {
       position: relative;
       z-index: 2;
@@ -3006,7 +3005,7 @@ h6 {
     position: absolute; }
 
   .header_area .navbar {
-    background: #868686; }
+    background: black; }
 
   .navbar-toggler[aria-expanded="false"] span:nth-child(2) {
     opacity: 1; }
@@ -3362,3 +3361,36 @@ h6 {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    border-collapse: collapse;
+    color: #686461;
+}
+
+.captionTable {
+    padding: 10px;
+    color: white;
+    background: #8FD4C1;
+    font-size: 18px;
+    text-align: left;
+    font-weight: bold;
+}
+
+th {
+    border-bottom: 3px solid #B9B29F;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+}
+
+tr:nth-child(odd) {
+    background: white;
+}
+
+tr:nth-child(even) {
+    background: #E8E6D1;
+}

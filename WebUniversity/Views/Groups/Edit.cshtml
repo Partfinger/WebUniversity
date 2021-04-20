@@ -1,0 +1,36 @@
+﻿@using WebUniversity.Models
+@model Group
+<section>
+    <form method="post" asp-action="Update" asp-route-Id="@Model.Id">
+        <div>
+            <div>
+                <label>Название группы</label>
+                <input type="text" name="Name" value="@Model.Name" />
+            </div>
+            <div>
+                <label>Курс обучения</label>
+                <select name="CourseId">
+                    <option value="null">Не назначено</option>
+                    @if (!(ViewBag.Courses is null))
+                    {
+                        @foreach (Course course in ViewBag.Courses)
+                        {
+                            @if (Model.Course == course)
+                            {
+                                <option selected = "selected" value="@course.Id">@course.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@course.Id">@course.Name</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Сохранить" />
+            </div>
+        </div>
+    </form>
+</section>

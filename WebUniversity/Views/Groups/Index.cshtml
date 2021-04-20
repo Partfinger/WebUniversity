@@ -1,0 +1,41 @@
+﻿@using WebUniversity.Models;
+<section>
+    @Html.ActionLink("Добавить новую группу", "Create");
+    @if (Model is null)
+    {
+        <p>В базе данных нет групп!</p>
+    }
+    else
+    {
+        <table>
+            <caption class="captionTable">Список групп по курсу:</caption>
+                <tr>
+                    <td>Группа</td>
+                    <td>Курс</td>
+                    <td>Количество студентов</td>
+                </tr>
+                @foreach (Group group in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(@group.Name, "Details", "Groups", new { @group.Id })</td>
+                        @if (@group.Course is null)
+                        {
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            <td>@Html.ActionLink(@group.Course.Name, "Details", "Courses", new { @group.Course.Id })</td>
+                        }
+                        @if (group.Students is null)
+                        {
+                            <td>0</td>
+                        }
+                        else
+                        {
+                            <td>@group.Students.Count</td>
+                        }
+                    </tr>
+                }
+        </table>
+    }
+</section>

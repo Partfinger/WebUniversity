@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="lname_captain_0">
+		<text>Абдурхманов</text>
+	</string>
+	<string id="lname_captain_1">
+		<text>Алтинник</text>
+	</string>
+	<string id="lname_captain_10">
+		<text>Барсак</text>
+	</string>
+	<string id="lname_captain_100">
+		<text>Кирєєв</text>
+	</string>
+	<string id="lname_captain_101">
+		<text>Щербин</text>
+	</string>
+	<string id="lname_captain_102">
+		<text>Ковальчук</text>
+	</string>
+	<string id="lname_captain_103">
+		<text>Коєв</text>
+	</string>
+	<string id="lname_captain_104">
+		<text>Козлов</text>
+	</string>
+	<string id="lname_captain_105">
+		<text>Колонтарьов</text>
+	</string>
+	<string id="lname_captain_106">
+		<text>Колонтар</text>
+	</string>
+	<string id="lname_captain_107">
+		<text>Кондратенко</text>
+	</string>
+	<string id="lname_captain_108">
+		<text>Коркін</text>
+	</string>
+	<string id="lname_captain_109">
+		<text>Корнєєв</text>
+	</string>
+	<string id="lname_captain_11">
+		<text>Баул</text>
+	</string>
+	<string id="lname_captain_110">
+		<text>Кравченко</text>
+	</string>
+	<string id="lname_captain_111">
+		<text>Кривда</text>
+	</string>
+	<string id="lname_captain_112">
+		<text>Кривохатський</text>
+	</string>
+	<string id="lname_captain_113">
+		<text>Кузнєцов</text>
+	</string>
+	<string id="lname_captain_114">
+		<text>Кузьмич</text>
+	</string>
+	<string id="lname_captain_115">
+		<text>Кузякін</text>
+	</string>
+	<string id="lname_captain_116">
+		<text>Кульчитський</text>
+	</string>
+	<string id="lname_captain_117">
+		<text>Кунцев</text>
+	</string>
+	<string id="lname_captain_118">
+		<text>Курвіц</text>
+	</string>
+	<string id="lname_captain_119">
+		<text>Кучерук</text>
+	</string>
+	<string id="lname_captain_12">
+		<text>Башаков</text>
+	</string>
+	<string id="lname_captain_120">
+		<text>Кушнарьов</text>
+	</string>
+	<string id="lname_captain_121">
+		<text>Кхаладзе</text>
+	</string>
+	<string id="lname_captain_122">
+		<text>Лаврик</text>
+	</string>
+	<string id="lname_captain_123">
+		<text>Лавров</text>
+	</string>
+	<string id="lname_captain_124">
+		<text>Лівшиць</text>
+	</string>
+	<string id="lname_captain_125">
+		<text>Лисичанський</text>
+	</string>
+	<string id="lname_captain_126">
+		<text>Литвин</text>
+	</string>
+	<string id="lname_captain_127">
+		<text>Лимаренко</text>
+	</string>
+	<string id="lname_captain_128">
+		<text>Мазепа</text>
+	</string>
+	<string id="lname_captain_129">
+		<text>Макаренко</text>
+	</string>
+	<string id="lname_captain_13">
+		<text>Башмаков</text>
+	</string>
+	<string id="lname_captain_130">
+		<text>Мальцев</text>
+	</string>
+	<string id="lname_captain_131">
+		<text>Мамаєв</text>
+	</string>
+	<string id="lname_captain_132">
+		<text>Мерзляєв</text>
+	</string>
+	<string id="lname_captain_133">
+		<text>Мільченко</text>
+	</string>
+	<string id="lname_captain_134">
+		<text>Миронюк</text>
+	</string>
+	<string id="lname_captain_135">
+		<text>Морер</text>
+	</string>
+	<string id="lname_captain_136">
+		<text>Крига</text>
+	</string>
+	<string id="lname_captain_137">
+		<text>Мостовий</text>
+	</string>
+	<string id="lname_captain_138">
+		<text>Мунтян</text>
+	</string>
+	<string id="lname_captain_139">
+		<text>Мухамедов</text>
+	</string>
+	<string id="lname_captain_14">
+		<text>Бешевлій</text>
+	</string>
+	<string id="lname_captain_140">
+		<text>Миськов</text>
+	</string>
+	<string id="lname_captain_141">
+		<text>Навроцький</text>
+	</string>
+	<string id="lname_captain_142">
+		<text>Неприцький</text>
+	</string>
+	<string id="lname_captain_143">
+		<text>Ніканоров</text>
+	</string>
+	<string id="lname_captain_144">
+		<text>Нікешин</text>
+	</string>
+	<string id="lname_captain_145">
+		<text>Нікулін</text>
+	</string>
+	<string id="lname_captain_146">
+		<text>Фуцин</text>
+	</string>
+	<string id="lname_captain_147">
+		<text>Нордієв</text>
+	</string>
+	<string id="lname_captain_148">
+		<text>Носань</text>
+	</string>
+	<string id="lname_captain_149">
+		<text>Ополєв</text>
+	</string>
+	<string id="lname_captain_15">
+		<text>Біноєв</text>
+	</string>
+	<string id="lname_captain_150">
+		<text>Орлевич</text>
+	</string>
+	<string id="lname_captain_151">
+		<text>Орлов</text>
+	</string>
+	<string id="lname_captain_152">
+		<text>Петкевич</text>
+	</string>
+	<string id="lname_captain_153">
+		<text>Петренко</text>
+	</string>
+	<string id="lname_captain_154">
+		<text>Петров</text>
+	</string>
+	<string id="lname_captain_155">
+		<text>Плохенко</text>
+	</string>
+	<string id="lname_captain_156">
+		<text>Подячєв</text>
+	</string>
+	<string id="lname_captain_157">
+		<text>Полянін</text>
+	</string>
+	<string id="lname_captain_158">
+		<text>Поплавський</text>
+	</string>
+	<string id="lname_captain_159">
+		<text>Попов</text>
+	</string>
+	<string id="lname_captain_16">
+		<text>Блінов</text>
+	</string>
+	<string id="lname_captain_160">
+		<text>Портних</text>
+	</string>
+	<string id="lname_captain_161">
+		<text>Прасолов</text>
+	</string>
+	<string id="lname_captain_162">
+		<text>Прокопенко</text>
+	</string>
+	<string id="lname_captain_163">
+		<text>Проскурін</text>
+	</string>
+	<string id="lname_captain_164">
+		<text>Проценко</text>
+	</string>
+	<string id="lname_captain_165">
+		<text>Прудов</text>
+	</string>
+	<string id="lname_captain_166">
+		<text>Пустовар</text>
+	</string>
+	<string id="lname_captain_167">
+		<text>Пучек</text>
+	</string>
+	<string id="lname_captain_168">
+		<text>Рабинович</text>
+	</string>
+	<string id="lname_captain_169">
+		<text>Радкевич</text>
+	</string>
+	<string id="lname_captain_17">
+		<text>Бобров</text>
+	</string>
+	<string id="lname_captain_170">
+		<text>Резун</text>
+	</string>
+	<string id="lname_captain_171">
+		<text>Рогоза</text>
+	</string>
+	<string id="lname_captain_172">
+		<text>Роднянський</text>
+	</string>
+	<string id="lname_captain_173">
+		<text>Ротань</text>
+	</string>
+	<string id="lname_captain_174">
+		<text>Рубльов</text>
+	</string>
+	<string id="lname_captain_175">
+		<text>Рудик</text>
+	</string>
+	<string id="lname_captain_176">
+		<text>Русанов</text>
+	</string>
+	<string id="lname_captain_177">
+		<text>Ричагірський</text>
+	</string>
+	<string id="lname_captain_178">
+		<text>Савченко</text>
+	</string>
+	<string id="lname_captain_179">
+		<text>Савчук</text>
+	</string>
+	<string id="lname_captain_18">
+		<text>Богданов</text>
+	</string>
+	<string id="lname_captain_180">
+		<text>Сагітов</text>
+	</string>
+	<string id="lname_captain_181">
+		<text>Свиридов</text>
+	</string>
+	<string id="lname_captain_182">
+		<text>Сєдих</text>
+	</string>
+	<string id="lname_captain_183">
+		<text>Середа</text>
+	</string>
+	<string id="lname_captain_184">
+		<text>Сидоренко</text>
+	</string>
+	<string id="lname_captain_185">
+		<text>Сидоров</text>
+	</string>
+	<string id="lname_captain_186">
+		<text>Синій</text>
+	</string>
+	<string id="lname_captain_187">
+		<text>Синіцин</text>
+	</string>
+	<string id="lname_captain_188">
+		<text>Скамійка</text>
+	</string>
+	<string id="lname_captain_189">
+		<text>Слуцький</text>
+	</string>
+	<string id="lname_captain_19">
+		<text>Бойко</text>
+	</string>
+	<string id="lname_captain_190">
+		<text>Смєлов</text>
+	</string>
+	<string id="lname_captain_191">
+		<text>Смолій</text>
+	</string>
+	<string id="lname_captain_192">
+		<text>Сорокін</text>
+	</string>
+	<string id="lname_captain_193">
+		<text>Стацюра</text>
+	</string>
+	<string id="lname_captain_194">
+		<text>Степчин</text>
+	</string>
+	<string id="lname_captain_195">
+		<text>Стичинський</text>
+	</string>
+	<string id="lname_captain_196">
+		<text>Сикула</text>
+	</string>
+	<string id="lname_captain_197">
+		<text>Тарнавський</text>
+	</string>
+	<string id="lname_captain_198">
+		<text>Татарчук</text>
+	</string>
+	<string id="lname_captain_199">
+		<text>Тимчук</text>
+	</string>
+	<string id="lname_captain_2">
+		<text>Андрійчук</text>
+	</string>
+	<string id="lname_captain_20">
+		<text>Бойченко</text>
+	</string>
+	<string id="lname_captain_21">
+		<text>Болдескул</text>
+	</string>
+	<string id="lname_captain_22">
+		<text>Бондарьов</text>
+	</string>
+	<string id="lname_captain_23">
+		<text>Борисов</text>
+	</string>
+	<string id="lname_captain_24">
+		<text>Брич</text>
+	</string>
+	<string id="lname_captain_25">
+		<text>Бронштейн</text>
+	</string>
+	<string id="lname_captain_26">
+		<text>Буряк</text>
+	</string>
+	<string id="lname_captain_27">
+		<text>Бутурін</text>
+	</string>
+	<string id="lname_captain_28">
+		<text>Бяло</text>
+	</string>
+	<string id="lname_captain_29">
+		<text>Валентинов</text>
+	</string>
+	<string id="lname_captain_3">
+		<text>Андрущенко</text>
+	</string>
+	<string id="lname_captain_30">
+		<text>Васильєв</text>
+	</string>
+	<string id="lname_captain_31">
+		<text>Веселов</text>
+	</string>
+	<string id="lname_captain_32">
+		<text>Виноградов</text>
+	</string>
+	<string id="lname_captain_33">
+		<text>Вовненко</text>
+	</string>
+	<string id="lname_captain_34">
+		<text>Воланчук</text>
+	</string>
+	<string id="lname_captain_35">
+		<text>Володар</text>
+	</string>
+	<string id="lname_captain_36">
+		<text>Волошин</text>
+	</string>
+	<string id="lname_captain_37">
+		<text>Воронцов</text>
+	</string>
+	<string id="lname_captain_38">
+		<text>Ворохаєв</text>
+	</string>
+	<string id="lname_captain_39">
+		<text>В'юшинський</text>
+	</string>
+	<string id="lname_captain_4">
+		<text>Анисьєв</text>
+	</string>
+	<string id="lname_captain_40">
+		<text>Галкін</text>
+	</string>
+	<string id="lname_captain_41">
+		<text>Ганзюк</text>
+	</string>
+	<string id="lname_captain_42">
+		<text>Гарковенко</text>
+	</string>
+	<string id="lname_captain_43">
+		<text>Гаркуша</text>
+	</string>
+	<string id="lname_captain_44">
+		<text>Георгов</text>
+	</string>
+	<string id="lname_captain_45">
+		<text>Глебовський</text>
+	</string>
+	<string id="lname_captain_46">
+		<text>Гнатюк</text>
+	</string>
+	<string id="lname_captain_47">
+		<text>Гончаренко</text>
+	</string>
+	<string id="lname_captain_48">
+		<text>Гордієнко</text>
+	</string>
+	<string id="lname_captain_49">
+		<text>Горлевой</text>
+	</string>
+	<string id="lname_captain_5">
+		<text>Ардашев</text>
+	</string>
+	<string id="lname_captain_50">
+		<text>Горохін</text>
+	</string>
+	<string id="lname_captain_51">
+		<text>Горюнов</text>
+	</string>
+	<string id="lname_captain_52">
+		<text>Гребенюк</text>
+	</string>
+	<string id="lname_captain_53">
+		<text>Грицаєнко</text>
+	</string>
+	<string id="lname_captain_54">
+		<text>Грицай</text>
+	</string>
+	<string id="lname_captain_55">
+		<text>Гриценков</text>
+	</string>
+	<string id="lname_captain_56">
+		<text>Гришачов</text>
+	</string>
+	<string id="lname_captain_57">
+		<text>Грищук</text>
+	</string>
+	<string id="lname_captain_58">
+		<text>Губар</text>
+	</string>
+	<string id="lname_captain_59">
+		<text>Гунько</text>
+	</string>
+	<string id="lname_captain_6">
+		<text>Бабич</text>
+	</string>
+	<string id="lname_captain_60">
+		<text>Гуревич</text>
+	</string>
+	<string id="lname_captain_61">
+		<text>Денисенко</text>
+	</string>
+	<string id="lname_captain_62">
+		<text>Довгалюк</text>
+	</string>
+	<string id="lname_captain_63">
+		<text>Домбрик</text>
+	</string>
+	<string id="lname_captain_64">
+		<text>Доценко</text>
+	</string>
+	<string id="lname_captain_65">
+		<text>Дроздуш</text>
+	</string>
+	<string id="lname_captain_66">
+		<text>Дубенчук</text>
+	</string>
+	<string id="lname_captain_67">
+		<text>Дудоров</text>
+	</string>
+	<string id="lname_captain_68">
+		<text>Дука</text>
+	</string>
+	<string id="lname_captain_69">
+		<text>Думко</text>
+	</string>
+	<string id="lname_captain_7">
+		<text>Балан</text>
+	</string>
+	<string id="lname_captain_70">
+		<text>Дунаєв</text>
+	</string>
+	<string id="lname_captain_71">
+		<text>Диклов</text>
+	</string>
+	<string id="lname_captain_72">
+		<text>Єрофєєв</text>
+	</string>
+	<string id="lname_captain_73">
+		<text>Єфремов</text>
+	</string>
+	<string id="lname_captain_74">
+		<text>Жабенко</text>
+	</string>
+	<string id="lname_captain_75">
+		<text>Жмиєв</text>
+	</string>
+	<string id="lname_captain_76">
+		<text>Жураковський</text>
+	</string>
+	<string id="lname_captain_77">
+		<text>Забийягода</text>
+	</string>
+	<string id="lname_captain_78">
+		<text>Загороднюк</text>
+	</string>
+	<string id="lname_captain_79">
+		<text>Замосенчук</text>
+	</string>
+	<string id="lname_captain_8">
+		<text>Баранов</text>
+	</string>
+	<string id="lname_captain_80">
+		<text>Зарубін</text>
+	</string>
+	<string id="lname_captain_81">
+		<text>Захарін</text>
+	</string>
+	<string id="lname_captain_82">
+		<text>Звоницький</text>
+	</string>
+	<string id="lname_captain_83">
+		<text>Зінов'єв</text>
+	</string>
+	<string id="lname_captain_84">
+		<text>Зозо</text>
+	</string>
+	<string id="lname_captain_85">
+		<text>Золотар</text>
+	</string>
+	<string id="lname_captain_86">
+		<text>Зубарєв</text>
+	</string>
+	<string id="lname_captain_87">
+		<text>Зубков</text>
+	</string>
+	<string id="lname_captain_88">
+		<text>Іванов</text>
+	</string>
+	<string id="lname_captain_89">
+		<text>Ігнатенко</text>
+	</string>
+	<string id="lname_captain_9">
+		<text>Барановський</text>
+	</string>
+	<string id="lname_captain_90">
+		<text>Іженко</text>
+	</string>
+	<string id="lname_captain_91">
+		<text>Іщук</text>
+	</string>
+	<string id="lname_captain_92">
+		<text>Казаков</text>
+	</string>
+	<string id="lname_captain_93">
+		<text>Котелцев</text>
+	</string>
+	<string id="lname_captain_94">
+		<text>Кандибабко</text>
+	</string>
+	<string id="lname_captain_95">
+		<text>Капука</text>
+	</string>
+	<string id="lname_captain_96">
+		<text>Капустянко</text>
+	</string>
+	<string id="lname_captain_97">
+		<text>Кац</text>
+	</string>
+	<string id="lname_captain_98">
+		<text>Кікабідзе</text>
+	</string>
+	<string id="lname_captain_99">
+		<text>Гацула</text>
+	</string>
+</string_table>

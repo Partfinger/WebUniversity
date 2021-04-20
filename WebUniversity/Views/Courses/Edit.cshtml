@@ -1,0 +1,19 @@
+﻿@using WebUniversity.Models; 
+@model Course;
+<section>
+    <form method="post" asp-controller="Courses" asp-action="Update" asp-route-Id="@Model.Id">
+        <div>
+            <div>
+                <label>Название курса</label>
+                <input type="text" name="Name" value="@Model.Name"/>
+            </div>
+            <div>
+                <label>Описание курса</label>
+                <input type="text" name="Description" value="@Model.Description" />
+            </div>
+            <div>
+                <input type="submit" value="Изменить" />
+            </div>
+        </div>
+    </form>
+</section>

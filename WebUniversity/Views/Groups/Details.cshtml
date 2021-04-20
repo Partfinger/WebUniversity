@@ -1,0 +1,37 @@
+﻿@using WebUniversity.Models;
+@model Group
+<section>
+    <div>
+        @Html.ActionLink("Редактировать группу", "Edit", "Groups", new { @Model.Id })
+    </div>
+    <div>
+        @Html.ActionLink(Model.Course.Name, "Details", "Courses", new { @Model.Course.Id })
+    </div>
+    <div>
+        @if (Model.Students is null)
+        {
+            <p>В группе нет студентов!</p>
+        }
+        else
+        {
+            <table>
+                <caption class="captionTable">Список студентов в группе:</caption>
+                <tr>
+                    <td>Номер</td>
+                    <td>Имя, Фамилия</td>
+                </tr>
+                @{
+                    int id = 0;
+                    var students = Model.Students.OrderBy(student => student.LastName);
+                }
+                @foreach (Student student in students)
+                {
+                    <tr>
+                        <td>@id++</td>
+                        <td>@Html.ActionLink($"{student.FirstName} {student.LastName}", "Details", "Students", new { @student.Id })</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</section>

@@ -1,0 +1,19 @@
+﻿@using WebUniversity.Models;
+
+<section>
+    @Html.ActionLink("Добавить новый курс", "Create");
+    <table>
+        <caption class="captionTable">Список курсов:</caption>
+        <tr>
+            <td>Курс</td>
+            <td>Описание</td>
+        </tr>
+        @foreach (Course course in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(@course.Name, "Details", "Courses", new { @course.Id })</td>
+                <td>@course.Description</td>
+            </tr>
+        }
+    </table>
+</section>

@@ -1,0 +1,43 @@
+﻿@using WebUniversity.Models;
+<section>
+    @Html.ActionLink("Добавить нового студента", "Create");
+    @if (Model is null)
+    {
+        <p>В базе данных нет студентов!</p>
+    }
+    else
+    {
+        <table>
+            <caption class="captionTable">Список студентов в базе данных:</caption>
+            <tr>
+                <td>Имя, Фамилия</td>
+                <td>Группа</td>
+                <td>Курс</td>
+            </tr>
+            @foreach (Student student in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink($"{student.FirstName} {student.LastName}", "Details", "Students", new { @student.Id })</td>
+                    @if (@student.Group is null)
+                    {
+                        <td>-</td>
+                        <td>-</td>
+                    }
+                    else
+                    {
+                        <td>@student.Group.Name</td>
+                        @if (student.Group.Course is null)
+                        {
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            <td>@student.Group.Course.Name</td>
+                        }
+                    }
+                    
+                </tr>
+            }
+        </table>
+    }
+</section>

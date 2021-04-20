@@ -1,0 +1,26 @@
+﻿@Html.ActionLink("Изменить курс", "Edit", "Courses", new { @Model.Id })
+<section>
+    <p>@Model.Name</p>
+    <p>@Model.Description</p>
+    @if (!(Model.Groups is null))
+    {
+    <table>
+        <caption class="captionTable">Список групп по курсу:</caption>
+        <tr>
+            <td>Группа</td>
+            <td>Количество студентов</td>
+        </tr>
+        @foreach (Group group in Model.Groups)
+            {
+    <tr>
+        <td>@Html.ActionLink(@group.Name, "Details", "Groups", new { @group.Id })</td>
+        <!--<td>group.Students.Count</td>-->
+    </tr>
+            }
+    </table>
+    }
+    else
+    {
+    <p>Нету групп на данном курсе!</p>
+    }
+</section>
