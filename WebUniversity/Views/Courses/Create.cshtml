@@ -1,13 +1,17 @@
-﻿<section>
-    <form method="post" asp-action="Create">
+﻿@model Course;
+<section>
+    <form method="post" asp-antiforgery="true" asp-controller="Courses" asp-action="Create">
         <div>
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
             <div>
                 <label>Название курса</label>
-                <input type="text" name="Name" />
+                <p><input type="text" asp-for="Name" /></p>
+                <span asp-validation-for="Name"></span>
             </div>
             <div>
                 <label>Описание</label>
-                <input type="text" name="Description" />
+                <p><input type="text" asp-for="Description" /></p>
+                <span asp-validation-for="Description"></span>
             </div>
             <div>
                 <input type="submit" value="Добавить" />

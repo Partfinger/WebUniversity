@@ -24,14 +24,13 @@ namespace WebUniversity.Controllers
 
         public IActionResult Details(int? id)
         {
-            if(id != null)
+            Course course;
+            if (FindCourseById(id, out course))
             {
-                Course course = db.Courses.Find(id);
-                db.Groups.Where(group => group.CourseId == id).Load();
-                if (course != null)
-                    return View(course);
+                db.Groups.Where(group => group.CourseId == course.Id).Load();
+                return View(course);
             }
-            return RedirectToAction("Error");
+            return NotFound();
         }
 
         public IActionResult Create()
@@ -42,38 +41,72 @@ namespace WebUniversity.Controllers
         [HttpPost]
         public IActionResult Create(Course newCourse)
         {
-            db.Courses.Add(newCourse);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                db.Courses.Add(newCourse);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { newCourse.Id });
+            }
             return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int? id)
         {
-            if (id != null)
+            Course course;
+            if (FindCourseById(id, out course))
             {
-                Course course = db.Courses.Find(id);
-                if (course != null)
-                    return View(course);
+                return View(course);
             }
-            return RedirectToAction("Error");
+            return NotFound();
         }
 
         [HttpPost]
         public IActionResult Update(Course course)
         {
-            db.Courses.Update(course);
-            db.SaveChanges();
-            return RedirectToAction("Details", new { course.Id });
+            if (ModelState.IsValid)
+            {
+                db.Courses.Update(course);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { course.Id });
+            }
+            return RedirectToAction("Edit", new { course.Id });
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int? id)
         {
-            return View();
+            Course course;
+            if (FindCourseById(id, out course))
+            {
+                if ( db.Groups.Where(group => group.CourseId == course.Id).Count() == 0)
+                {
+                    return View(course);
+                }
+            }
+            return NotFound();
         }
 
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult ConfirmDelete(int? id)
         {
-            return View();
+            Course course;
+            if (FindCourseById(id, out course))
+            {
+                db.Courses.Remove(course);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        bool FindCourseById(int? id, out Course course)
+        {
+            course = null;
+            if (id != null)
+            {
+                course = db.Courses.Find(id);
+                if (course != null)
+                    return true;
+            }
+            return false;
         }
     }
 }

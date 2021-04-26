@@ -19,7 +19,7 @@ namespace WebUniversity.Models
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //DataGenerator.InitializeDB(modelBuilder);
+            DataGenerator.InitializeDB(modelBuilder);
         }
     }
 }

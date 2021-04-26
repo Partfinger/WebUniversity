@@ -9,7 +9,7 @@ namespace WebUniversity.Models
     public class Group
     {
         public int Id { get; set; }
-        [MaxLength(10)]
+        [MaxLength(10), Required]
         public string Name { get; set; }
 
         public int? CourseId { get; set; }

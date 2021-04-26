@@ -9,9 +9,9 @@ namespace WebUniversity.Models
     public class Course
     {
         public int Id { get; set; }
-        [MaxLength(50)]
+        [MaxLength(50), Required]
         public string Name { get; set; }
-        [MaxLength(500)]
+        [MaxLength(500), Required]
         public string Description { get; set; }
 
         public List<Group> Groups { get; set; }

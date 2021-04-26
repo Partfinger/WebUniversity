@@ -1,32 +1,35 @@
-﻿@using WebUniversity.Models
-@model Group
+﻿@model Group
 <section>
     <form method="post" asp-action="Update" asp-route-Id="@Model.Id">
         <div>
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
             <div>
-                <label>Название группы</label>
-                <input type="text" name="Name" value="@Model.Name" />
+                <b>Название группы</b>
+                <p><input type="text" asp-for="Name" value="@Model.Name" /></p>
+                <span asp-validation-for="Name"></span>
             </div>
             <div>
-                <label>Курс обучения</label>
-                <select name="CourseId">
-                    <option value="null">Не назначено</option>
-                    @if (!(ViewBag.Courses is null))
-                    {
-                        @foreach (Course course in ViewBag.Courses)
+                <b>Курс обучения</b>
+                <p>
+                    <select asp-for="CourseId">
+                        <option value="null">Не назначено</option>
+                        @if (!(ViewBag.Courses is null))
                         {
-                            @if (Model.Course == course)
+                            @foreach (Course course in ViewBag.Courses)
                             {
-                                <option selected = "selected" value="@course.Id">@course.Name</option>
-                            }
-                            else
-                            {
-                                <option value="@course.Id">@course.Name</option>
-                            }
+                                @if (Model.Course == course)
+                                {
+                                    <option selected="selected" value="@course.Id">@course.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@course.Id">@course.Name</option>
+                                }
 
+                            }
                         }
-                    }
-                </select>
+                    </select>
+                </p>
             </div>
             <div>
                 <input type="submit" value="Сохранить" />

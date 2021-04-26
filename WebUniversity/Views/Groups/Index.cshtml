@@ -1,6 +1,6 @@
 ﻿@using WebUniversity.Models;
 <section>
-    @Html.ActionLink("Добавить новую группу", "Create");
+    @Html.ActionLink("Добавить новую группу", "Create")
     @if (Model is null)
     {
         <p>В базе данных нет групп!</p>
@@ -14,6 +14,9 @@
                     <td>Курс</td>
                     <td>Количество студентов</td>
                 </tr>
+                @{ 
+                    int id = 0;
+                }
                 @foreach (Group group in Model)
                 {
                     <tr>
@@ -26,14 +29,7 @@
                         {
                             <td>@Html.ActionLink(@group.Course.Name, "Details", "Courses", new { @group.Course.Id })</td>
                         }
-                        @if (group.Students is null)
-                        {
-                            <td>0</td>
-                        }
-                        else
-                        {
-                            <td>@group.Students.Count</td>
-                        }
+                        <td>@ViewBag.countOfStudents[id++]</td>
                     </tr>
                 }
         </table>

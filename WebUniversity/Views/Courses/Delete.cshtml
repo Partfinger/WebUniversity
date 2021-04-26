@@ -1,1 +1,7 @@
-﻿
+﻿@model Course;
+<section>
+    <form method="post" asp-controller="Courses" asp-action="ConfirmDelete" asp-route-Id="@Model.Id">
+        <b>Действительно удалить курс?</b>
+        <p><input type="submit" value="Удалить курс" /></p>
+    </form>
+</section>

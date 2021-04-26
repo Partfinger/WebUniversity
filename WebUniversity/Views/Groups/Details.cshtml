@@ -1,37 +1,49 @@
-﻿@using WebUniversity.Models;
-@model Group
+﻿@model Group
 <section>
     <div>
         @Html.ActionLink("Редактировать группу", "Edit", "Groups", new { @Model.Id })
     </div>
     <div>
-        @Html.ActionLink(Model.Course.Name, "Details", "Courses", new { @Model.Course.Id })
-    </div>
-    <div>
-        @if (Model.Students is null)
+        <b>Название:</b>
+        <p>@Model.Name</p>
+        @if (Model.Course != null)
         {
-            <p>В группе нет студентов!</p>
+            <b>Курс:</b>
+            <p>@Html.ActionLink(Model.Course.Name, "Details", "Courses", new { @Model.Course.Id })</p>
         }
         else
+        {
+            <p>Курс для группы не назначен.</p>
+        }
+    </div>
+    <div>
+        @if (Model.Students != null)
         {
             <table>
                 <caption class="captionTable">Список студентов в группе:</caption>
                 <tr>
-                    <td>Номер</td>
+                    <td>№</td>
                     <td>Имя, Фамилия</td>
                 </tr>
                 @{
-                    int id = 0;
+                    int id = 1;
                     var students = Model.Students.OrderBy(student => student.LastName);
                 }
                 @foreach (Student student in students)
                 {
                     <tr>
-                        <td>@id++</td>
+                        <td>@(id++)</td>
                         <td>@Html.ActionLink($"{student.FirstName} {student.LastName}", "Details", "Students", new { @student.Id })</td>
                     </tr>
                 }
             </table>
         }
+        else
+        {
+            <p>В группе нет студентов!</p>
+            <form method="post" asp-controller="Groups" asp-action="Delete" asp-route-Id="@Model.Id">
+                <input type="submit" value="Удалить группу" />
+            </form>
+        }
     </div>
-</section>
+    </section>

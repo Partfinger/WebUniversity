@@ -1,5 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Student;
+<section>
+    <form method="post" asp-controller="Students" asp-action="ConfirmDelete" asp-route-Id="@Model.Id">
+        <b>Действительно удалить студента?</b>
+        <p><input type="submit" value="Удалить студента" /></p>
+    </form>
+</section>

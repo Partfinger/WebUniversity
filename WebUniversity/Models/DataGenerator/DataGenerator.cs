@@ -17,9 +17,9 @@ namespace WebUniversity.Models
             List<Group> groups = GenerateGroups(courses);
             List<Student> students = GenerateStudent(groups, 100);
 
-            modelBuilder.Entity<Course>().HasData(courses);
             modelBuilder.Entity<Group>().HasData(groups);
             modelBuilder.Entity<Student>().HasData(students);
+            modelBuilder.Entity<Course>().HasData(courses);
         }
 
         static List<Course> GenerateCourses()
@@ -62,16 +62,15 @@ namespace WebUniversity.Models
             string[] snames = XMLReader.GetNamesArray(snamesPath);
 
             List<Student> students = new List<Student>();
-
             for (int index = 0, userId = 1; index < numberOfStudents; index++, userId++)
             {
-                students.Add(
+                 students.Add(
                     new Student()
                     {
                         Id = userId,
                         FirstName = fnames[(int)(rand.NextDouble() * fnames.Length)],
                         LastName = snames[(int)(rand.NextDouble() * snames.Length)],
-                        GroupId = (int)(rand.NextDouble() * groups.Count)
+                        GroupId = 1 + (int)(rand.NextDouble() * groups.Count)
                     }
                     );
             }
