@@ -92,10 +92,9 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .section_gap {
-  padding: 35px 0; }
-  @media (max-width: 991px) {
-    .section_gap {
-      padding: 70px 0; } }
+    padding: 35px 0;
+    padding-bottom: 5.375rem;
+}
 
 .section_gap_top {
   padding-top: 130px; }
@@ -155,12 +154,13 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .header_area {
-  position: absolute;
-  width: 100%;
-  z-index: 99;
-  transition: background 0.4s, all 0.3s linear; }
+    background-color: #002347;
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    transition: background 0.4s, all 0.3s linear;
+}
   .header_area .navbar {
-    background: transparent;
     padding: 0px;
     border: 0px;
     border-radius: 0px; }
@@ -3214,8 +3214,6 @@ h6 {
 	============================================================================================ */
   /* Footer Area css
 	============================================================================================ */
-  .footer-area {
-    padding: 70px 0px; }
 
   /* End End Footer Area css
 	============================================================================================ */
@@ -3255,7 +3253,9 @@ h6 {
 /*  Footer Styles
 /* =================================== */
 .footer-area {
-  background: #002347; }
+    background: #002347;
+    height: 5.375rem;
+}
   @media (max-width: 991px) {
     .footer-area .single-footer-widget {
       margin-bottom: 30px; } }
@@ -3393,4 +3393,10 @@ tr:nth-child(odd) {
 
 tr:nth-child(even) {
     background: #E8E6D1;
+}
+
+#content {
+    padding-top: 80px;
+    position: relative;
+    left: 35%;
 }

@@ -56,19 +56,14 @@
             </nav>
         </div>
     </header>
-    <section class="banner_area"></section>
-    @RenderBody()
-    <footer class="footer-area section_gap">
-        <div class="container">
-            <div class="row footer-bottom d-flex justify-content-between">
-                <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
-        </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+    <footer id="footer" class="footer-area section_gap">
+        <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
+            Copyright &copy;
+            @DateTime.Now.Year  All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        </p>
     </footer>
     <script src="~/js/jquery-3.2.1.min.js"></script>
     <script src="~/js/popper.js"></script>

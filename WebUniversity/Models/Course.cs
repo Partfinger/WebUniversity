@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUniversity.Models.Interfaces;
 
 namespace WebUniversity.Models
 {
-    public class Course
+    public class Course : IHaveId
     {
         public int Id { get; set; }
         [MaxLength(50), Required]

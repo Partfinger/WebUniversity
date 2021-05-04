@@ -1,37 +1,41 @@
-﻿@using WebUniversity.Models;
-<section>
-    @Html.ActionLink("Добавить новую группу", "Create")
-    @if (Model is null)
-    {
-        <p>В базе данных нет групп!</p>
-    }
-    else
-    {
-        <table>
-            <caption class="captionTable">Список групп по курсу:</caption>
-                <tr>
-                    <td>Группа</td>
-                    <td>Курс</td>
-                    <td>Количество студентов</td>
-                </tr>
-                @{ 
-                    int id = 0;
-                }
-                @foreach (Group group in Model)
+﻿@using WebUniversity.Models.ViewModels;
+@model IndexViewModel<Group>;
+
+@{
+    Layout = "../MasterPages/ViewForIndex.cshtml";
+}
+
+@Html.ActionLink("Добавить новую группу", "Create")
+@if (Model is null)
+{
+    <p>В базе данных нет групп!</p>
+}
+else
+{
+    <table>
+        <caption class="captionTable">Список групп по курсу:</caption>
+        <tr>
+            <td>Группа</td>
+            <td>Курс</td>
+            <td>Количество студентов</td>
+        </tr>
+        @{
+            int id = 0;
+        }
+        @foreach (Group group in Model.Items)
+        {
+            <tr>
+                <td>@Html.ActionLink(@group.Name, "Details", "Groups", new { @group.Id })</td>
+                @if (@group.Course is null)
                 {
-                    <tr>
-                        <td>@Html.ActionLink(@group.Name, "Details", "Groups", new { @group.Id })</td>
-                        @if (@group.Course is null)
-                        {
-                            <td>-</td>
-                        }
-                        else
-                        {
-                            <td>@Html.ActionLink(@group.Course.Name, "Details", "Courses", new { @group.Course.Id })</td>
-                        }
-                        <td>@ViewBag.countOfStudents[id++]</td>
-                    </tr>
+                    <td>-</td>
                 }
-        </table>
-    }
-</section>
+                else
+                {
+                    <td>@Html.ActionLink(@group.Course.Name, "Details", "Courses", new { @group.Course.Id })</td>
+                }
+                <td>@ViewBag.countOfStudents[id++]</td>
+            </tr>
+        }
+    </table>
+}

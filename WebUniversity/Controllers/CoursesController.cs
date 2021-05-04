@@ -5,27 +5,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebUniversity.Models;
+using WebUniversity.Models.ViewModels;
 
 namespace WebUniversity.Controllers
 {
-    public class CoursesController : Controller
+    public class CoursesController : BaseController<Course>
     {
-        UniversityContext db;
-
-        public CoursesController(UniversityContext context)
+        public CoursesController(UniversityContext context) : base(context)
         {
-            db = context;
         }
 
-        public IActionResult Index()
+        public override IActionResult Index(int page = 1)
         {
-            return View(db.Courses);
+            IndexViewModel<Course> viewModel = GetItemsForPage(page);
+            return View(viewModel);
         }
 
         public IActionResult Details(int? id)
         {
             Course course;
-            if (FindCourseById(id, out course))
+            if (FindById(id, out course))
             {
                 db.Groups.Where(group => group.CourseId == course.Id).Load();
                 return View(course);
@@ -33,49 +32,10 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(Course newCourse)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Courses.Add(newCourse);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { newCourse.Id });
-            }
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult Edit(int? id)
-        {
-            Course course;
-            if (FindCourseById(id, out course))
-            {
-                return View(course);
-            }
-            return NotFound();
-        }
-
-        [HttpPost]
-        public IActionResult Update(Course course)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Courses.Update(course);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { course.Id });
-            }
-            return RedirectToAction("Edit", new { course.Id });
-        }
-
         public IActionResult Delete(int? id)
         {
             Course course;
-            if (FindCourseById(id, out course))
+            if (FindById(id, out course))
             {
                 if ( db.Groups.Where(group => group.CourseId == course.Id).Count() == 0)
                 {
@@ -83,30 +43,6 @@ namespace WebUniversity.Controllers
                 }
             }
             return NotFound();
-        }
-
-        [HttpPost]
-        public IActionResult ConfirmDelete(int? id)
-        {
-            Course course;
-            if (FindCourseById(id, out course))
-            {
-                db.Courses.Remove(course);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
-
-        bool FindCourseById(int? id, out Course course)
-        {
-            course = null;
-            if (id != null)
-            {
-                course = db.Courses.Find(id);
-                if (course != null)
-                    return true;
-            }
-            return false;
         }
     }
 }

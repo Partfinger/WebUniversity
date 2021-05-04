@@ -5,48 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebUniversity.Models;
+using WebUniversity.Models.ViewModels;
 
 namespace WebUniversity.Controllers
 {
-    public class GroupsController : Controller
+    public class GroupsController : BaseController<Group>
     {
-        UniversityContext db;
-
-        public GroupsController(UniversityContext context)
+        public GroupsController(UniversityContext context) : base(context)
         {
-            db = context;
         }
 
-        public IActionResult Index()
+        public override IActionResult Index(int page = 1)
         {
+            IndexViewModel<Group> viewModel = GetItemsForPage(page);
             db.Courses.Load();
             db.Students.Where(student => student.GroupId != null).Load();
-
+            
             ViewBag.countOfStudents = db.Groups.Select(group => group.Students.Count()).ToList();
-            return View(db.Groups);
+            return View(viewModel);
         }
 
-        public IActionResult Create()
+        public override IActionResult Edit(int? id)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(Group newGroup)
-        {
-            if (ModelState.IsValid)
+            Group group;
+            if (FindById(id, out group))
             {
-                db.Groups.Add(newGroup);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { newGroup.Id });
+                ViewBag.Courses = db.Courses.ToList();
+                return View(group);
             }
-            return RedirectToAction("Index");
+            return NotFound();
         }
 
         public IActionResult Details(int? id)
         {
             Group group;
-            if (FindGroupById(id, out group))
+            if (FindById(id, out group))
             {
                 db.Courses.Where(course => course.Id == group.CourseId).FirstOrDefault();
                 db.Students.Where(student => student.GroupId == group.Id).Load();
@@ -55,33 +48,10 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
-        public IActionResult Edit(int? id)
-        {
-            Group group;
-            if (FindGroupById(id, out group))
-            {
-                ViewBag.Courses = db.Courses.ToList();
-                return View(group);
-            }
-            return NotFound();
-        }
-
-        [HttpPost]
-        public IActionResult Update(Group updatedGroup)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Groups.Update(updatedGroup);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { updatedGroup.Id });
-            }
-            return RedirectToAction("Edit", new { updatedGroup.Id });
-        }
-
         public IActionResult Delete(int? id)
         {
             Group group;
-            if (FindGroupById(id, out group))
+            if (FindById(id, out group))
             {
                 if (db.Students.Where(student => student.GroupId == group.Id).Count() == 0)
                 {
@@ -89,30 +59,6 @@ namespace WebUniversity.Controllers
                 }
             }
             return NotFound();
-        }
-
-        [HttpPost]
-        public IActionResult ConfirmDelete(int? id)
-        {
-            Group group;
-            if (FindGroupById(id, out group))
-            {
-                db.Groups.Remove(group);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
-
-        bool FindGroupById(int? id, out Group group)
-        {
-            group = null;
-            if (id != null)
-            {
-                group = db.Groups.Find(id);
-                if (group != null)
-                    return true;
-            }
-            return false;
         }
     }
 }

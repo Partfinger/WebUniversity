@@ -5,45 +5,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebUniversity.Models;
+using WebUniversity.Models.ViewModels;
 
 namespace WebUniversity.Controllers
 {
-    public class StudentsController : Controller
+    public class StudentsController : BaseController<Student>
     {
-        UniversityContext db;
-
-        public StudentsController(UniversityContext context)
+        public StudentsController(UniversityContext context) : base(context)
         {
-            db = context;
         }
 
-        public IActionResult Index()
+        public override IActionResult Index(int page = 1)
         {
+            IndexViewModel<Student> viewModel = GetItemsForPage(page);
             db.Groups.Load();
-            return View(db.Students);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(Student newStudent)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Students.Add(newStudent);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { newStudent.Id });
-            }
-            return RedirectToAction("Index");
+            return View(viewModel);
         }
 
         public IActionResult Details(int? id)
         {
             Student student;
-            if (FindStudentById(id, out student))
+            if (FindById(id, out student))
             {
                 student.Group = db.Groups.FirstOrDefault(Group => Group.Id == student.GroupId);
                 return View(student);
@@ -51,10 +33,10 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
-        public IActionResult Edit(int? id)
+        public override IActionResult Edit(int? id)
         {
             Student student;
-            if (FindStudentById(id, out student))
+            if (FindById(id, out student))
             {
                 ViewBag.Groups = db.Groups.ToList();
                 return View(student);
@@ -62,50 +44,16 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
-        [HttpPost]
-        public IActionResult Update(Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Students.Update(student);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { student.Id });
-            }
-            return RedirectToAction("Edit", new { student.Id });
-        }
+        
 
         public IActionResult Delete(int? id)
         {
             Student student;
-            if (FindStudentById(id, out student))
+            if (FindById(id, out student))
             {
                 return View(student);
             }
             return NotFound();
-        }
-
-        [HttpPost]
-        public IActionResult ConfirmDelete(int? id)
-        {
-            Student student;
-            if (FindStudentById(id, out student))
-            {
-                db.Students.Remove(student);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
-
-        bool FindStudentById(int? id, out Student student)
-        {
-            student = null;
-            if (id != null)
-            {
-                student = db.Students.Find(id);
-                if (student != null)
-                    return true;
-            }
-            return false;
         }
     }
 }

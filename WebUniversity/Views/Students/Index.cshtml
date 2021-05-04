@@ -1,31 +1,36 @@
-﻿<section>
-    @Html.ActionLink("Добавить нового студента", "Create")
-    @if (Model is null)
-    {
-        <p>В базе данных нет студентов!</p>
-    }
-    else
-    {
-        <table>
-            <caption class="captionTable">Список студентов в базе данных:</caption>
+﻿@using WebUniversity.Models.ViewModels;
+@model IndexViewModel<Student>;
+
+@{
+    Layout = "../MasterPages/ViewForIndex.cshtml";
+}
+
+@Html.ActionLink("Добавить нового студента", "Create")
+@if (Model.Items is null)
+{
+    <p>В базе данных нет студентов!</p>
+}
+else
+{
+    <table>
+        <caption class="captionTable">Список студентов в базе данных:</caption>
+        <tr>
+            <td>Имя, Фамилия</td>
+            <td>Группа</td>
+        </tr>
+        @foreach (Student student in Model.Items)
+        {
             <tr>
-                <td>Имя, Фамилия</td>
-                <td>Группа</td>
+                <td>@Html.ActionLink($"{student.FirstName} {student.LastName}", "Details", "Students", new { @student.Id })</td>
+                @if (@student.Group is null)
+                {
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink(student.Group.Name, "Details", "Groups", new { @student.Group.Id })</td>
+                }
             </tr>
-            @foreach (Student student in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink($"{student.FirstName} {student.LastName}", "Details", "Students", new { @student.Id })</td>
-                    @if (@student.Group is null)
-                    {
-                        <td>-</td>
-                    }
-                    else
-                    {
-                        <td>@Html.ActionLink(student.Group.Name, "Details", "Groups", new { @student.Group.Id })</td>
-                    }
-                </tr>
-            }
-        </table>
-    }
-</section>
+        }
+    </table>
+}
