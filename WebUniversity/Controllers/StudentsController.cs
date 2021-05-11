@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace WebUniversity.Controllers
         {
         }
 
+        [Breadcrumb("Students")]
         public override IActionResult Index(int page = 1)
         {
             IndexViewModel<Student> viewModel = GetItemsForPage(page);
@@ -22,6 +24,7 @@ namespace WebUniversity.Controllers
             return View(viewModel);
         }
 
+        [Breadcrumb("Details")]
         public IActionResult Details(int? id)
         {
             Student student;
@@ -33,6 +36,7 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
+        [Breadcrumb("Edit")]
         public override IActionResult Edit(int? id)
         {
             Student student;
@@ -44,8 +48,7 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
-        
-
+        [Breadcrumb("Delete")]
         public IActionResult Delete(int? id)
         {
             Student student;

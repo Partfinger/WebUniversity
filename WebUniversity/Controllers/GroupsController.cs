@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace WebUniversity.Controllers
         {
         }
 
+        [Breadcrumb("Groups")]
         public override IActionResult Index(int page = 1)
         {
             IndexViewModel<Group> viewModel = GetItemsForPage(page);
@@ -25,6 +27,7 @@ namespace WebUniversity.Controllers
             return View(viewModel);
         }
 
+        [Breadcrumb("Edit")]
         public override IActionResult Edit(int? id)
         {
             Group group;
@@ -36,6 +39,7 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
+        [Breadcrumb("Detail")]
         public IActionResult Details(int? id)
         {
             Group group;
@@ -48,6 +52,7 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
+        [Breadcrumb("Delete")]
         public IActionResult Delete(int? id)
         {
             Group group;

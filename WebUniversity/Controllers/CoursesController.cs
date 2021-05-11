@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,14 @@ namespace WebUniversity.Controllers
         {
         }
 
+        [Breadcrumb("Courses")]
         public override IActionResult Index(int page = 1)
         {
             IndexViewModel<Course> viewModel = GetItemsForPage(page);
             return View(viewModel);
         }
 
+        [Breadcrumb("Details")]
         public IActionResult Details(int? id)
         {
             Course course;
@@ -32,6 +35,7 @@ namespace WebUniversity.Controllers
             return NotFound();
         }
 
+        [Breadcrumb("Delete")]
         public IActionResult Delete(int? id)
         {
             Course course;

@@ -1,17 +1,20 @@
 ﻿@model Group
 <section>
-    <form method="post" asp-action="Update" asp-route-Id="@Model.Id">
-        <div>
+
+    <div class="container">
+        <form method="post" asp-action="Update" asp-route-Id="@Model.Id">
             <div class="validation" asp-validation-summary="ModelOnly"></div>
-            <div>
-                <b>Название группы</b>
-                <p><input type="text" asp-for="Name" value="@Model.Name" /></p>
+            <div class="form-group row">
+                <label asp-for="Name" class="col-sm-2 col-form-label col-form-label-sm">Название группы</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control form-control-sm mb-2" asp-for="Name" value="@Model.Name" />
+                </div>
                 <span asp-validation-for="Name"></span>
             </div>
-            <div>
-                <b>Курс обучения</b>
-                <p>
-                    <select asp-for="CourseId">
+            <div class="form-group row">
+                <label asp-for="CourseId" class="col-sm-2 col-form-label col-form-label-sm">Курс обучения</label>
+                <div class="col-sm-10">
+                    <select asp-for="CourseId" class="form-control">
                         <option value="null">Не назначено</option>
                         @if (!(ViewBag.Courses is null))
                         {
@@ -29,11 +32,9 @@
                             }
                         }
                     </select>
-                </p>
+                </div>
             </div>
-            <div>
-                <input type="submit" value="Сохранить" />
-            </div>
-        </div>
-    </form>
+            <input type="submit" value="Сохранить" />
+        </form>
+    </div>
 </section>

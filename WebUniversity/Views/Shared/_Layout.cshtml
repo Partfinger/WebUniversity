@@ -1,6 +1,4 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -56,14 +54,25 @@
             </nav>
         </div>
     </header>
-    <div id="content">
-        @RenderBody()
-    </div>
-    <footer id="footer" class="footer-area section_gap">
-        <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
-            Copyright &copy;
-            @DateTime.Now.Year  All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-        </p>
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay"></div>
+            <div class="container"></div>
+        </div>
+    </section>
+    <breadcrumb></breadcrumb>
+    <main>
+        <div class="wrapper">
+            @RenderBody()
+            <div class="push"></div>
+        </div>
+    </main>
+    <footer id="footer" class="footer-area">
+        <div class="container">
+            <p class="footer-text text-white text-center">
+                Copyright &copy; @DateTime.Now.Year  All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            </p>
+        </div>
     </footer>
     <script src="~/js/jquery-3.2.1.min.js"></script>
     <script src="~/js/popper.js"></script>
