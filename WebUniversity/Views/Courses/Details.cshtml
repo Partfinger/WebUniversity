@@ -1,19 +1,19 @@
-﻿@Html.ActionLink("Изменить курс", "Edit", "Courses", new { @Model.Id })
+﻿@Html.ActionLink(Localizer["ChangeCourse"].Value, "Edit", "Courses", new { @Model.Id })
 <section>
     <div>
-        <b>Имя курса:</b>
+        <b>@Localizer["CourseName"]</b>
         <p>@Model.Name</p>
     </div>
     <div>
-        <b>Описание курса:</b>
+        <b>@Localizer["CourseDescription"]</b>
         <p>@Model.Description</p>
     </div>
     @if (Model.Groups != null)
     {
         <table>
-            <caption class="captionTable">Список групп по курсу:</caption>
+            <caption class="captionTable">@Localizer["CaptionTable"]</caption>
             <tr>
-                <td>Группа</td>
+                <td>@Localizer["Group"]</td>
             </tr>
             @foreach (Group group in Model.Groups)
             {
@@ -25,9 +25,9 @@
     }
     else
     {
-        <b>Нету групп на данном курсе!</b>
+        <b>@Localizer["NoGroups"]</b>
         <form method="post" asp-controller="Courses" asp-action="Delete" asp-route-Id="@Model.Id">
-            <input type="submit" value="Удалить курс" />
+            <input type="submit" value="@Localizer["DeleteCourse"]" />
         </form>
     }
 </section>

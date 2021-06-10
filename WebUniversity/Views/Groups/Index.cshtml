@@ -5,19 +5,19 @@
     Layout = "../MasterPages/ViewForIndex.cshtml";
 }
 
-@Html.ActionLink("Добавить новую группу", "Create")
+@Html.ActionLink(Localizer["AddNew"].Value, "Create")
 @if (Model is null)
 {
-    <p>В базе данных нет групп!</p>
+    <p>@Localizer["NoGroups"]</p>
 }
 else
 {
     <table>
-        <caption class="captionTable">Список групп по курсу:</caption>
+        <caption class="captionTable">@Localizer["CaptionTable"]</caption>
         <tr>
-            <td>Группа</td>
-            <td>Курс</td>
-            <td>Количество студентов</td>
+            <td>@Localizer["Group"]</td>
+            <td>@Localizer["Course"]</td>
+            <td>@Localizer["StudentsCount"]</td>
         </tr>
         @{
             int id = 0;

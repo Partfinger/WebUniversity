@@ -1,21 +1,35 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.Name });
+}
+
+<!DOCTYPE html>
 <html>
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="icon" href="../img/favicon.png" type="image/png" />
-    <title>Edustage Education</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/css/bootstrap.css")" />
-    <link rel="stylesheet" href="~/css/flaticon.css" />
-    <link rel="stylesheet" href="~/css/themify-icons.css" />
-    <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css" />
-    <!-- main css -->
-    <link rel="stylesheet" href="~/css/style.css" />
-</head>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="icon" href="../img/favicon.png" type="image/png" />
+        <title>Edustage Education</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="~/css/bootstrap.css"/>
+        <link rel="stylesheet" href="~/css/flaticon.css" />
+        <link rel="stylesheet" href="~/css/themify-icons.css" />
+        <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css" />
+        <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css" />
+        <!-- main css -->
+        <link rel="stylesheet" href="~/css/style.css" />
+    </head>
 <body>
     <header class="header_area white-header">
         <div class="main_menu">
@@ -40,13 +54,18 @@
                          id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/Courses">Курсы</a>
+                                <a class="nav-link" href="/Courses">@Localizer["Courses"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/Groups">Группы</a>
+                                <a class="nav-link" href="/Groups">@Localizer["Groups"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/Students">Студенты</a>
+                                <a class="nav-link" href="/Students">@Localizer["Students"]</a>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <form asp-controller="Home" asp-action="SetLanguage" style="margin-top:20px;" asp-route-returnUrl="@Context.Request.Path" method="post" class="form-horizontal">
+                                    <select name="culture" onchange="this.form.submit();" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -70,7 +89,7 @@
     <footer id="footer" class="footer-area">
         <div class="container">
             <p class="footer-text text-white text-center">
-                Copyright &copy; @DateTime.Now.Year  All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                Copyright &copy; @DateTime.Now.Year @Localizer["Copyright"]
             </p>
         </div>
     </footer>

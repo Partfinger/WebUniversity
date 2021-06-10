@@ -25,8 +25,6 @@ namespace WebUniversity
             Configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -44,9 +42,20 @@ namespace WebUniversity
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddControllersWithViews().AddViewLocalization();
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("ru"),
+                };
+                options.DefaultRequestCulture = new RequestCulture(culture: "ru", uiCulture: "ru"); ;
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -58,20 +67,7 @@ namespace WebUniversity
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            var supportedCultures = new[]
-            {
-                new CultureInfo("en"),
-                new CultureInfo("ru"),
-                new CultureInfo("ua")
-            };
-
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("ru"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
-
+            app.UseRequestLocalization();
             app.UseRouting();
             app.UseStaticFiles();
 

@@ -4,19 +4,19 @@
         <div>
             <div class="validation" asp-validation-summary="ModelOnly"></div>
             <div>
-                <label>Имя</label>
+                <label>@Localizer["FirstName"]</label>
                 <input type="text" asp-for="FirstName" value="@Model.FirstName" />
                 <span asp-validation-for="FirstName"></span>
             </div>
             <div>
-                <label>Фамилия</label>
+                <label>@Localizer["LastName"]</label>
                 <input type="text" asp-for="LastName" value="@Model.LastName" />
                 <span asp-validation-for="LastName"></span>
             </div>
             <div>
-                <label>Группа:</label>
+                <label>@Localizer["Group"]</label>
                 <select asp-for="GroupId">
-                    <option value="null">Не назначено</option>
+                    <option value="null">@Localizer["NotAssigned"]</option>
                     @if (ViewBag.Groups != null)
                     {
                         @foreach (Group group in ViewBag.Groups)
@@ -35,7 +35,7 @@
                 </select>
             </div>
             <div>
-                <input type="submit" value="Сохранить" />
+                <input type="submit" value="@Localizer["Save"]" />
             </div>
         </div>
     </form>

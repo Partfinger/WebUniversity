@@ -5,12 +5,12 @@
     Layout = "../MasterPages/ViewForIndex.cshtml";
 }
 
-@Html.ActionLink("Добавить новый курс", "Create")
+@Html.ActionLink(Localizer["AddNew"].Value, "Create")
 <table>
-    <caption class="captionTable">Список курсов:</caption>
+    <caption class="captionTable">@Localizer["CaptionTable"]</caption>
     <tr>
-        <td>Курс</td>
-        <td>Описание</td>
+        <td>@Localizer["Course"]</td>
+        <td>@Localizer["CourseDescription"]</td>
     </tr>
     @foreach (Course course in Model.Items)
     {

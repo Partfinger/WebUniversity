@@ -5,18 +5,18 @@
     Layout = "../MasterPages/ViewForIndex.cshtml";
 }
 
-@Html.ActionLink("Добавить нового студента", "Create")
+@Html.ActionLink(Localizer["Add"].Value, "Create")
 @if (Model.Items is null)
 {
-    <p>В базе данных нет студентов!</p>
+    <p>@Localizer["NoStudents"]</p>
 }
 else
 {
     <table>
-        <caption class="captionTable">Список студентов в базе данных:</caption>
+        <caption class="captionTable">@Localizer["captionTable"]</caption>
         <tr>
-            <td>Имя, Фамилия</td>
-            <td>Группа</td>
+            <td>@Localizer["Names"]</td>
+            <td>@Localizer["Group"]</td>
         </tr>
         @foreach (Student student in Model.Items)
         {

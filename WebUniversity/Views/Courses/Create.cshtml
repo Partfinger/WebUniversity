@@ -4,17 +4,17 @@
         <div>
             <div class="validation" asp-validation-summary="ModelOnly"></div>
             <div>
-                <label>Название курса</label>
+                <label>@Localizer["CourseName"]</label>
                 <p><input type="text" asp-for="Name" /></p>
                 <span asp-validation-for="Name"></span>
             </div>
             <div>
-                <label>Описание</label>
+                <label>@Localizer["CourseDescription"]</label>
                 <p><input type="text" asp-for="Description" /></p>
                 <span asp-validation-for="Description"></span>
             </div>
             <div>
-                <input type="submit" value="Добавить" />
+                <input type="submit" value="@Localizer["Add"]" />
             </div>
         </div>
     </form>
