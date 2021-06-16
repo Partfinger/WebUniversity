@@ -2,21 +2,25 @@
 @model IndexViewModel<Course>;
 
 @{ 
-    Layout = "../MasterPages/ViewForIndex.cshtml";
+    Layout = "~/Views/Shared/ViewForIndex.cshtml";
 }
 
 @Html.ActionLink(Localizer["AddNew"].Value, "Create")
-<table>
+<table class="table">
     <caption class="captionTable">@Localizer["CaptionTable"]</caption>
-    <tr>
-        <td>@Localizer["Course"]</td>
-        <td>@Localizer["CourseDescription"]</td>
-    </tr>
-    @foreach (Course course in Model.Items)
-    {
+    <thead>
         <tr>
-            <td>@Html.ActionLink(@course.Name, "Details", "Courses", new { @course.Id })</td>
-            <td>@course.Description</td>
+            <td>@Localizer["Course"]</td>
+            <td>@Localizer["CourseDescription"]</td>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (Course course in Model.Items)
+        {
+            <tr>
+                <td>@Html.ActionLink(@course.Name, "Details", "Courses", new { @course.Id })</td>
+                <td>@course.Description</td>
+            </tr>
+        }
+    </tbody>
 </table>

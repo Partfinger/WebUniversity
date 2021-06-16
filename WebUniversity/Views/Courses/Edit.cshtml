@@ -1,21 +1,19 @@
 ﻿@model Course;
-<section>
-    <form method="post" asp-antiforgery="true" asp-controller="Courses" asp-action="Update" asp-route-Id="@Model.Id">
+<form method="post" asp-antiforgery="true" asp-controller="Courses" asp-action="Update" asp-route-Id="@Model.Id">
+    <div>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
         <div>
-            <div class="validation" asp-validation-summary="ModelOnly"></div>
-            <div>
-                <label>@Localizer["CourseName"]</label>
-                <p><input type="text" asp-for="Name" value="@Model.Name" /></p>
-                <span asp-validation-for="Name"></span>
-            </div>
-            <div>
-                <label>@Localizer["CourseDescription"]</label>
-                <p><input type="text" asp-for="Description" value="@Model.Description" /></p>
-                <span asp-validation-for="Description"></span>
-            </div>
-            <div>
-                <input type="submit" value="@Localizer["ConfirmChanges"]" />
-            </div>
+            <label>@Localizer["CourseName"]</label>
+            <p><input type="text" asp-for="Name" value="@Model.Name" /></p>
+            <span asp-validation-for="Name"></span>
         </div>
-    </form>
-</section>
+        <div>
+            <label>@Localizer["CourseDescription"]</label>
+            <p><input type="text" asp-for="Description" value="@Model.Description" /></p>
+            <span asp-validation-for="Description"></span>
+        </div>
+        <div>
+            <input type="submit" value="@Localizer["ConfirmChanges"]" />
+        </div>
+    </div>
+</form>

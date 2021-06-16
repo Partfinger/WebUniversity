@@ -2,7 +2,7 @@
 @model IndexViewModel<Group>;
 
 @{
-    Layout = "../MasterPages/ViewForIndex.cshtml";
+    Layout = "~/Views/Shared/ViewForIndex.cshtml";
 }
 
 @Html.ActionLink(Localizer["AddNew"].Value, "Create")
@@ -12,7 +12,7 @@
 }
 else
 {
-    <table>
+    <table class="table">
         <caption class="captionTable">@Localizer["CaptionTable"]</caption>
         <tr>
             <td>@Localizer["Group"]</td>

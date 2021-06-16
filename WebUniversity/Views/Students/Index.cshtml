@@ -2,7 +2,7 @@
 @model IndexViewModel<Student>;
 
 @{
-    Layout = "../MasterPages/ViewForIndex.cshtml";
+    Layout = "~/Views/Shared/ViewForIndex.cshtml";
 }
 
 @Html.ActionLink(Localizer["Add"].Value, "Create")
@@ -12,7 +12,7 @@
 }
 else
 {
-    <table>
+    <table class="table">
         <caption class="captionTable">@Localizer["captionTable"]</caption>
         <tr>
             <td>@Localizer["Names"]</td>
