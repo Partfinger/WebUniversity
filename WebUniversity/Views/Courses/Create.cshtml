@@ -2,18 +2,16 @@
 <form method="post" asp-antiforgery="true" asp-controller="Courses" asp-action="Create">
     <div>
         <div class="validation" asp-validation-summary="ModelOnly"></div>
-        <div>
+        <div class="form-group">
             <label>@Localizer["CourseName"]</label>
             <p><input type="text" asp-for="Name" /></p>
             <span asp-validation-for="Name"></span>
         </div>
-        <div>
+        <div class="form-group">
             <label>@Localizer["CourseDescription"]</label>
             <p><input type="text" asp-for="Description" /></p>
             <span asp-validation-for="Description"></span>
         </div>
-        <div>
-            <input type="submit" value="@Localizer["Add"]" />
-        </div>
+        <input type="submit" value="@Localizer["Add"]" />
     </div>
 </form>

@@ -3,4 +3,7 @@
 }
 
 @RenderBody()
-<page-link page-model="@Model.PageViewModel" page-action="Index"></page-link>
+@if (@Model.PageViewModel.TotalPages > 1)
+{
+    <page-link page-model="@Model.PageViewModel" page-action="Index"></page-link>
+}

@@ -10,7 +10,8 @@ namespace WebUniversity.Models
     public class Course : IHaveId
     {
         public int Id { get; set; }
-        [MaxLength(50), Required]
+        [Required(ErrorMessage = "CourseMustHaveName")]
+        [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(500), Required]
         public string Description { get; set; }

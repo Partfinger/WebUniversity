@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUniversity.DataAccess;
 using WebUniversity.Models;
 
 namespace WebUniversity
@@ -64,7 +65,7 @@ namespace WebUniversity
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
 
             app.UseRequestLocalization();
