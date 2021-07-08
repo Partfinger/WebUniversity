@@ -3,7 +3,11 @@
 }
 
 @RenderBody()
-@if (@Model.PageViewModel.TotalPages > 1)
+@if (Model.PageViewModel != null && Model.PageViewModel.TotalPages > 1)
 {
-    <page-link page-model="@Model.PageViewModel" page-action="Index"></page-link>
+    <page-link page-model="@Model.PageViewModel" page-search="@Model.SearchData" page-action="Index"></page-link>
+}
+
+@section RightSide {
+    @RenderSection("RightSide")
 }

@@ -23,6 +23,7 @@ namespace WebUniversity.TagHelpers
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
         public PageViewModel PageModel { get; set; }
+        public string PageSearch { get; set; }
         public string PageAction { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -54,13 +55,13 @@ namespace WebUniversity.TagHelpers
         {
             TagBuilder item = new TagBuilder("li");
             TagBuilder link = new TagBuilder("a");
-            if (pageNumber == this.PageModel.PageNumber)
+            if (pageNumber == PageModel.PageNumber)
             {
                 item.AddCssClass("active");
             }
             else
             {
-                link.Attributes["href"] = urlHelper.Action(PageAction, new { page = pageNumber });
+                link.Attributes["href"] = urlHelper.Action(PageAction, new { page = pageNumber, search = PageSearch });
             }
             item.AddCssClass("page-item");
             link.AddCssClass("page-link");

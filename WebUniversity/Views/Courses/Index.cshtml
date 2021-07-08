@@ -1,26 +1,61 @@
 ﻿@using WebUniversity.Models.ViewModels;
 @model IndexViewModel<Course>;
 
-@{ 
+@{
     Layout = "~/Views/Shared/ViewForIndex.cshtml";
 }
 
-@Html.ActionLink(Localizer["AddNew"].Value, "Create")
-<table class="table">
-    <caption class="captionTable">@Localizer["CaptionTable"]</caption>
-    <thead>
-        <tr>
-            <td>@Localizer["Course"]</td>
-            <td>@Localizer["CourseDescription"]</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Course course in Model.Items)
-        {
+@if (Model.Items is null)
+{
+<div class="alert alert-warning" role="alert">
+    @if (string.IsNullOrEmpty(Model.SearchData))
+    {
+        @Localizer["NoCourses"]
+    }
+    else
+    {
+        @Localizer["NotFound"]
+        <a href="~/Courses" role="button">@Localizer["BackToList"].Value</a>
+    }
+    </div>
+}
+else
+{
+    @if (!string.IsNullOrEmpty(Model.SearchData))
+    {
+<div class="alert alert-info" role="alert">
+    @Localizer["SearchingResults"]
+    <a href="~/Courses" role="button">@Localizer["BackToList"].Value</a>
+</div>
+    }
+    <table class="table">
+        <caption class="captionTable">@Localizer["CaptionTable"]</caption>
+        <thead>
             <tr>
-                <td>@Html.ActionLink(@course.Name, "Details", "Courses", new { @course.Id })</td>
-                <td>@course.Description</td>
+                <td>@Localizer["Course"]</td>
+                <td>@Localizer["CourseDescription"]</td>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (Course course in Model.Items)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@course.Name, "Details", "Courses", new { @course.Id })</td>
+                    <td>@course.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section RightSide {
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" method="post" asp-antiforgery="true" asp-controller="Courses" asp-action="Index">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" name="search" value="@Model.SearchData" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@Localizer["Search"]</button>
+        </form>
+    </nav>
+    <nav class="navbar navbar-light bg-light">
+        <a class="btn btn-primary" href="~/Courses/Create" role="button">@Localizer["AddNew"].Value</a>
+    </nav>
+    }

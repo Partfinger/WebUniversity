@@ -20,21 +20,35 @@ namespace WebUniversity.Controllers
             db = context;
         }
 
-        protected IndexViewModel<T> GetItemsForPage(int page = 1)
+        protected IndexViewModel<T> Paginate(int page = 1, string search = null)
         {
-            var sourse = db.Set<T>().ToList();
+            var sourse = Filtrate(search);
             int count = sourse.Count();
-            var itemsForPage = sourse.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
-            IndexViewModel<T> viewModel = new IndexViewModel<T>
+            IndexViewModel<T> viewModel;
+            if (count > 0)
             {
-                PageViewModel = pageViewModel,
-                Items = itemsForPage
-            };
+                var itemsForPage = sourse.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+                viewModel = new IndexViewModel<T>
+                {
+                    PageViewModel = pageViewModel,
+                    Items = itemsForPage,
+                    SearchData = search
+                };
+            }
+            else
+            {
+                viewModel = new IndexViewModel<T>
+                {
+                    SearchData = search
+                };
+            }
             return viewModel;
         }
 
-        public abstract IActionResult Index(int page = 1);
+        public abstract IActionResult Index(int page = 1, string search = null);
+
+        protected abstract IQueryable<T> Filtrate(string search = null);
 
         public IActionResult Create()
         {

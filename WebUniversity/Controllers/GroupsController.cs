@@ -18,13 +18,14 @@ namespace WebUniversity.Controllers
         }
 
         [Breadcrumb("Groups")]
-        public override IActionResult Index(int page = 1)
+        public override IActionResult Index(int page = 1, string search = null)
         {
-            IndexViewModel<Group> viewModel = GetItemsForPage(page);
+            IndexViewModel<Group> viewModel = Paginate(page, search);
             db.Courses.Load();
             db.Students.Where(student => student.GroupId != null).Load();
             
             ViewBag.countOfStudents = db.Groups.Select(group => group.Students.Count()).ToList();
+
             return View(viewModel);
         }
 
@@ -65,6 +66,20 @@ namespace WebUniversity.Controllers
                 }
             }
             return NotFound();
+        }
+
+        protected override IQueryable<Group> Filtrate(string search = null)
+        {
+            IQueryable<Group> groups;
+            if (!string.IsNullOrEmpty(search))
+            {
+                groups = db.Groups.Where(p => p.Name.Contains(search));
+            }
+            else
+            {
+                groups = db.Set<Group>();
+            }
+            return groups;
         }
     }
 }

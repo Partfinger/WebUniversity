@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUniversity.DataAccess;
 using WebUniversity.Models;
 using WebUniversity.Models.ViewModels;
 
@@ -17,9 +18,9 @@ namespace WebUniversity.Controllers
         }
 
         [Breadcrumb("Students")]
-        public override IActionResult Index(int page = 1)
+        public override IActionResult Index(int page = 1, string search = null)
         {
-            IndexViewModel<Student> viewModel = GetItemsForPage(page);
+            IndexViewModel<Student> viewModel = Paginate(page, search);
             db.Groups.Load();
             return View(viewModel);
         }
@@ -57,6 +58,20 @@ namespace WebUniversity.Controllers
                 return View(student);
             }
             return NotFound();
+        }
+
+        protected override IQueryable<Student> Filtrate(string search = null)
+        {
+            IQueryable<Student> students;
+            if (!string.IsNullOrEmpty(search))
+            {
+                students = db.Students.Where(p => p.FirstName.Contains(search) || p.LastName.Contains(search));
+            }
+            else
+            {
+                students = db.Set<Student>();
+            }
+            return students;
         }
     }
 }

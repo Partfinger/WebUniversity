@@ -8,6 +8,8 @@
         <div class="col-xl-auto col-lg-auto col-md-auto col-sm-auto col-auto">
             @RenderBody()
         </div>
-        <div class="col-xl col-lg col-md col-sm col"></div>
+        <div class="col-xl col-lg col-md col-sm col">
+            @RenderSection("RightSide", false)
+        </div>
     </div>
 </div>

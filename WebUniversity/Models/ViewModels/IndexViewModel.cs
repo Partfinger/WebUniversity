@@ -9,5 +9,6 @@ namespace WebUniversity.Models.ViewModels
     {
         public IEnumerable<T> Items { get; set; }
         public PageViewModel PageViewModel { get; set; }
+        public string SearchData { get; set; }
     }
 }

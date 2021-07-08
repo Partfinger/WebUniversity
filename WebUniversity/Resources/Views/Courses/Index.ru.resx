@@ -120,6 +120,9 @@
   <data name="AddNew" xml:space="preserve">
     <value>Добавить новый курс</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Вернуться ко всему списку.</value>
+  </data>
   <data name="CaptionTable" xml:space="preserve">
     <value>Список курсов</value>
   </data>
@@ -128,5 +131,17 @@
   </data>
   <data name="CourseDescription" xml:space="preserve">
     <value>Описание курса</value>
+  </data>
+  <data name="NoCourses" xml:space="preserve">
+    <value>В базе данных отсутствуют курсы!</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>По запросу курсы не найдены!</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="SearchingResults" xml:space="preserve">
+    <value>Результаты поиска по запросу.</value>
   </data>
 </root>

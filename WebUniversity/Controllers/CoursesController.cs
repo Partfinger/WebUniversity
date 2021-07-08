@@ -18,9 +18,10 @@ namespace WebUniversity.Controllers
         }
 
         [Breadcrumb("Courses")]
-        public override IActionResult Index(int page = 1)
+        public override IActionResult Index(int page = 1, string search = null)
         {
-            IndexViewModel<Course> viewModel = GetItemsForPage(page);
+            IndexViewModel<Course> viewModel = Paginate(page, search);
+
             return View(viewModel);
         }
 
@@ -48,6 +49,20 @@ namespace WebUniversity.Controllers
                 }
             }
             return NotFound();
+        }
+
+        protected override IQueryable<Course> Filtrate(string search = null)
+        {
+            IQueryable<Course> courses;
+            if (!string.IsNullOrEmpty(search))
+            {
+                courses = db.Courses.Where(p => p.Name.Contains(search) || p.Description.Contains(search));
+            }
+            else
+            {
+                courses = db.Set<Course>();
+            }
+            return courses;
         }
     }
 }

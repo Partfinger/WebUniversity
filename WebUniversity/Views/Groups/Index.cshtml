@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/ViewForIndex.cshtml";
 }
 
-@Html.ActionLink(Localizer["AddNew"].Value, "Create")
 @if (Model is null)
 {
     <p>@Localizer["NoGroups"]</p>
@@ -38,4 +37,16 @@ else
             </tr>
         }
     </table>
+}
+
+@section RightSide {
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" method="post" asp-antiforgery="true" asp-controller="Groups" asp-action="Index">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="@Model.SearchData">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    <nav class="navbar navbar-light bg-light">
+        <a class="btn btn-primary" href="~/Groups/Create" role="button">@Localizer["AddNew"].Value</a>
+    </nav>
 }
