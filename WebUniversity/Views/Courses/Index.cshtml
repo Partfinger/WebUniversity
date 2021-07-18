@@ -7,26 +7,24 @@
 
 @if (Model.Items is null)
 {
-<div class="alert alert-warning" role="alert">
-    @if (string.IsNullOrEmpty(Model.SearchData))
-    {
-        @Localizer["NoCourses"]
-    }
-    else
-    {
-        @Localizer["NotFound"]
-        <a href="~/Courses" role="button">@Localizer["BackToList"].Value</a>
-    }
+    <div class="alert alert-warning" role="alert">
+        @if (Model.Searching)
+        {
+            @Localizer["NoCourses"]
+        }
+        else
+        {
+            @Localizer["NotFound"]
+        }
     </div>
 }
 else
 {
-    @if (!string.IsNullOrEmpty(Model.SearchData))
+    @if (Model.Searching)
     {
-<div class="alert alert-info" role="alert">
-    @Localizer["SearchingResults"]
-    <a href="~/Courses" role="button">@Localizer["BackToList"].Value</a>
-</div>
+        <div class="alert alert-info" role="alert">
+            @Localizer["SearchingResults"]
+        </div>
     }
     <table class="table">
         <caption class="captionTable">@Localizer["CaptionTable"]</caption>
@@ -50,12 +48,6 @@ else
 
 @section RightSide {
     <nav class="navbar navbar-light bg-light">
-        <form class="form-inline" method="post" asp-antiforgery="true" asp-controller="Courses" asp-action="Index">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name="search" value="@Model.SearchData" />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@Localizer["Search"]</button>
-        </form>
+        <a class="btn btn-primary" asp-action="Create" role="button">@Localizer["AddNew"]</a>
     </nav>
-    <nav class="navbar navbar-light bg-light">
-        <a class="btn btn-primary" href="~/Courses/Create" role="button">@Localizer["AddNew"].Value</a>
-    </nav>
-    }
+}

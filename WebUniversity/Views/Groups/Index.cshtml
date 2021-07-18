@@ -5,9 +5,18 @@
     Layout = "~/Views/Shared/ViewForIndex.cshtml";
 }
 
-@if (Model is null)
+@if (Model.Items is null)
 {
-    <p>@Localizer["NoGroups"]</p>
+    <div class="alert alert-warning" role="alert">
+        @if (Model.Searching)
+        {
+            @Localizer["NotFound"]
+        }
+        else
+        {
+            @Localizer["NoGroups"]
+        }
+    </div>
 }
 else
 {
@@ -41,12 +50,6 @@ else
 
 @section RightSide {
     <nav class="navbar navbar-light bg-light">
-        <form class="form-inline" method="post" asp-antiforgery="true" asp-controller="Groups" asp-action="Index">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="@Model.SearchData">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-    <nav class="navbar navbar-light bg-light">
-        <a class="btn btn-primary" href="~/Groups/Create" role="button">@Localizer["AddNew"].Value</a>
+        <a class="btn btn-primary" asp-action="Create" role="button">@Localizer["AddNew"]</a>
     </nav>
 }

@@ -7,7 +7,16 @@
 
 @if (Model.Items is null)
 {
-    <p>@Localizer["NoStudents"]</p>
+    <div class="alert alert-warning" role="alert">
+        @if (Model.Searching)
+        {
+            @Localizer["NotFound"]
+        }
+        else
+        {
+            @Localizer["NoStudents"]
+        }
+    </div>
 }
 else
 {
@@ -36,12 +45,6 @@ else
 
 @section RightSide {
     <nav class="navbar navbar-light bg-light">
-        <form class="form-inline" method="post" asp-antiforgery="true" asp-controller="Students" asp-action="Index">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name="search" value="@Model.SearchData">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-    <nav class="navbar navbar-light bg-light">
-        <a class="btn btn-primary" href="~/Students/Create" role="button">@Localizer["AddNew"].Value</a>
+        <a class="btn btn-primary" asp-action="Create" role="button">@Localizer["AddNew"]</a>
     </nav>
 }

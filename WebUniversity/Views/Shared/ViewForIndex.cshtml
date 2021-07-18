@@ -9,5 +9,17 @@
 }
 
 @section RightSide {
+    <nav class="navbar navbar-light bg-light ml-auto">
+        <form class="form-inline" method="post" asp-antiforgery="true" asp-action="Index">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" name="search" value="@Model.SearchData" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@Localizer["Search"]</button>
+        </form>
+    </nav>
+    @if (Model.Searching)
+    {
+        <nav class="navbar navbar-light bg-light">
+            <a class="btn btn-primary" asp-action="Index" role="button">@Localizer["ResetSarch"]</a>
+        </nav>
+    }
     @RenderSection("RightSide")
 }
