@@ -12,12 +12,12 @@ namespace WebUniversity.Controllers
 {
     public abstract class BaseController<T> : Controller where T: class, IHaveId
     {
-        protected UniversityContext db;
+        protected IUnitOfWork db;
         protected const int pageSize = 25;
 
-        public BaseController(UniversityContext context)
+        public BaseController(IUnitOfWork unitOfWork)
         {
-            db = context;
+            db = unitOfWork;
         }
 
         protected IndexViewModel<T> Paginate(int page = 1, string search = null)
@@ -60,7 +60,7 @@ namespace WebUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Set<T>().Add(newItem);
+                db.GetRepository<T>().Create(newItem);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
@@ -81,7 +81,7 @@ namespace WebUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Set<T>().Update(item);
+                db.GetRepository<T>().Update(item);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { item.Id });
             }
@@ -94,7 +94,7 @@ namespace WebUniversity.Controllers
             T item;
             if (FindById(id, out item))
             {
-                db.Set<T>().Remove(item);
+                db.GetRepository<T>().Delete(item);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
@@ -105,7 +105,7 @@ namespace WebUniversity.Controllers
             item = null;
             if (id != null)
             {
-                item = db.Set<T>().Find(id);
+                item = db.GetRepository<T>().Find(id);
                 if (item != null)
                     return true;
             }

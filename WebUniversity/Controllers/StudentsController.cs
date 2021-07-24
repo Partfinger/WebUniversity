@@ -13,7 +13,7 @@ namespace WebUniversity.Controllers
 {
     public class StudentsController : BaseController<Student>
     {
-        public StudentsController(UniversityContext context) : base(context)
+        public StudentsController(IUnitOfWork context) : base(context)
         {
         }
 
@@ -21,7 +21,7 @@ namespace WebUniversity.Controllers
         public override IActionResult Index(int page = 1, string search = null)
         {
             IndexViewModel<Student> viewModel = Paginate(page, search);
-            db.Groups.Load();
+            db.GetRepository<Group>().GetAll().Load();
             return View(viewModel);
         }
 
@@ -31,7 +31,7 @@ namespace WebUniversity.Controllers
             Student student;
             if (FindById(id, out student))
             {
-                student.Group = db.Groups.FirstOrDefault(Group => Group.Id == student.GroupId);
+                student.Group = db.GetRepository<Group>().GetAll().FirstOrDefault(Group => Group.Id == student.GroupId);
                 return View(student);
             }
             return NotFound();
@@ -43,7 +43,7 @@ namespace WebUniversity.Controllers
             Student student;
             if (FindById(id, out student))
             {
-                ViewBag.Groups = db.Groups.ToList();
+                ViewBag.Groups = db.GetRepository<Group>().GetAll().ToList();
                 return View(student);
             }
             return NotFound();
@@ -65,11 +65,11 @@ namespace WebUniversity.Controllers
             IQueryable<Student> students;
             if (!string.IsNullOrEmpty(search))
             {
-                students = db.Students.Where(p => p.FirstName.Contains(search) || p.LastName.Contains(search));
+                students = db.GetRepository<Student>().GetAll().Where(p => p.FirstName.Contains(search) || p.LastName.Contains(search));
             }
             else
             {
-                students = db.Set<Student>();
+                students = db.GetRepository<Student>().GetAll();
             }
             return students;
         }

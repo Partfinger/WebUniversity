@@ -9,30 +9,29 @@ namespace WebUniversity.DataAccess
 {
     public class UnitOfWork : IUnitOfWork
     {
-        UniversityContext db = new UniversityContext();
+        UniversityContext db;
         readonly IDictionary<Type, object> repositoriesFactory;
 
-        public UnitOfWork()
+        public UnitOfWork(UniversityContext db)
         {
+            this.db = db;
             repositoriesFactory = new Dictionary<Type, object>();
         }
 
-        public TRepository GetRepository<TEntity, TRepository>()
-            where TEntity : class
-            where TRepository : IRepository<TEntity>, new()
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
             Type key = typeof(TEntity);
 
             // add repo, lazy loading
             if (!repositoriesFactory.ContainsKey(key))
             {
-                //TRepository repository = new GenericRepository<TEntity>(db);
+                IRepository<TEntity> repository = new GenericRepository<TEntity>(db);
 
-                //repositoriesFactory.Add(key, repository);
+                repositoriesFactory.Add(key, repository);
             }
 
             // return repository
-            return (TRepository)repositoriesFactory[key];
+            return (IRepository<TEntity>)repositoriesFactory[key];
         }
 
         public void Save()
@@ -58,6 +57,11 @@ namespace WebUniversity.DataAccess
             Dispose(true);
 
             GC.SuppressFinalize(this);
+        }
+
+        public void SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

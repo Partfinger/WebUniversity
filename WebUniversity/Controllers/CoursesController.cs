@@ -13,7 +13,7 @@ namespace WebUniversity.Controllers
 {
     public class CoursesController : BaseController<Course>
     {
-        public CoursesController(UniversityContext context) : base(context)
+        public CoursesController(IUnitOfWork context) : base(context)
         {
         }
 
@@ -31,7 +31,7 @@ namespace WebUniversity.Controllers
             Course course;
             if (FindById(id, out course))
             {
-                db.Groups.Where(group => group.CourseId == course.Id).Load();
+                db.GetRepository<Group>().GetAll().Where(group => group.CourseId == course.Id).Load();
                 return View(course);
             }
             return NotFound();
@@ -43,7 +43,7 @@ namespace WebUniversity.Controllers
             Course course;
             if (FindById(id, out course))
             {
-                if ( db.Groups.Where(group => group.CourseId == course.Id).Count() == 0)
+                if (db.GetRepository<Group>().GetAll().Where(group => group.CourseId == course.Id).Count() == 0)
                 {
                     return View(course);
                 }
@@ -56,11 +56,11 @@ namespace WebUniversity.Controllers
             IQueryable<Course> courses;
             if (!string.IsNullOrEmpty(search))
             {
-                courses = db.Courses.Where(p => p.Name.Contains(search) || p.Description.Contains(search));
+                courses = db.GetRepository<Course>().GetAll().Where(p => p.Name.Contains(search) || p.Description.Contains(search));
             }
             else
             {
-                courses = db.Set<Course>();
+                courses = db.GetRepository<Course>().GetAll();
             }
             return courses;
         }

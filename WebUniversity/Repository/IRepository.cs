@@ -7,10 +7,11 @@ namespace WebUniversity.Repository
 {
     public interface IRepository<T> where T: class
     {
-        T Get(int? id);
-        IEnumerable<T> GetAll();
+        T Find(int? id);
+        IQueryable<T> GetAll();
         void Create(T item);
         void Update(T item);
+        void Delete(T item);
         void Delete(int? id);
     }
 }

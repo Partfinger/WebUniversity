@@ -25,14 +25,19 @@ namespace WebUniversity.Repository
             throw new NotImplementedException();
         }
 
-        public TEntity Get(int? id)
+        public void Delete(TEntity item)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public TEntity Find(int? id)
         {
             throw new NotImplementedException();
+        }
+
+        public IQueryable<TEntity> GetAll()
+        {
+            return db.Set<TEntity>();
         }
 
         public void Update(TEntity item)

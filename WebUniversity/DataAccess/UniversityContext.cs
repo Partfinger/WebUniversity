@@ -17,11 +17,6 @@ namespace WebUniversity.DataAccess
         {
             Database.EnsureCreated();
         }
-
-        public UniversityContext() : base()
-        {
-            Database.EnsureCreated();
-        }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

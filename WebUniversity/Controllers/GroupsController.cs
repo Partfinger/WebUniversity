@@ -13,7 +13,7 @@ namespace WebUniversity.Controllers
 {
     public class GroupsController : BaseController<Group>
     {
-        public GroupsController(UniversityContext context) : base(context)
+        public GroupsController(IUnitOfWork context) : base(context)
         {
         }
 
@@ -21,10 +21,10 @@ namespace WebUniversity.Controllers
         public override IActionResult Index(int page = 1, string search = null)
         {
             IndexViewModel<Group> viewModel = Paginate(page, search);
-            db.Courses.Load();
-            db.Students.Where(student => student.GroupId != null).Load();
+            db.GetRepository<Course>().GetAll().Load();
+            db.GetRepository<Student>().GetAll().Where(student => student.GroupId != null).Load();
             
-            ViewBag.countOfStudents = db.Groups.Select(group => group.Students.Count()).ToList();
+            ViewBag.countOfStudents = db.GetRepository<Group>().GetAll().Select(group => group.Students.Count()).ToList();
 
             return View(viewModel);
         }
@@ -35,7 +35,7 @@ namespace WebUniversity.Controllers
             Group group;
             if (FindById(id, out group))
             {
-                ViewBag.Courses = db.Courses.ToList();
+                ViewBag.Courses = db.GetRepository<Course>().GetAll().ToList();
                 return View(group);
             }
             return NotFound();
@@ -47,8 +47,8 @@ namespace WebUniversity.Controllers
             Group group;
             if (FindById(id, out group))
             {
-                db.Courses.Where(course => course.Id == group.CourseId).FirstOrDefault();
-                db.Students.Where(student => student.GroupId == group.Id).Load();
+                db.GetRepository<Course>().GetAll().Where(course => course.Id == group.CourseId).FirstOrDefault();
+                db.GetRepository<Student>().GetAll().Where(student => student.GroupId == group.Id).Load();
                 return View(group);
             }
             return NotFound();
@@ -60,7 +60,7 @@ namespace WebUniversity.Controllers
             Group group;
             if (FindById(id, out group))
             {
-                if (db.Students.Where(student => student.GroupId == group.Id).Count() == 0)
+                if (db.GetRepository<Student>().GetAll().Where(student => student.GroupId == group.Id).Count() == 0)
                 {
                     return View(group);
                 }
@@ -73,11 +73,11 @@ namespace WebUniversity.Controllers
             IQueryable<Group> groups;
             if (!string.IsNullOrEmpty(search))
             {
-                groups = db.Groups.Where(p => p.Name.Contains(search));
+                groups = db.GetRepository<Group>().GetAll().Where(p => p.Name.Contains(search));
             }
             else
             {
-                groups = db.Set<Group>();
+                groups = db.GetRepository<Group>().GetAll();
             }
             return groups;
         }
