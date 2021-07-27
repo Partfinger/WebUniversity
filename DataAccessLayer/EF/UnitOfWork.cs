@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAccessLayer.Interfaces;
+using DataAccessLayer.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebUniversity.Repository;
 
-namespace WebUniversity.DataAccess
+namespace DataAccessLayer.EF
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -22,21 +20,14 @@ namespace WebUniversity.DataAccess
         {
             Type key = typeof(TEntity);
 
-            // add repo, lazy loading
             if (!repositoriesFactory.ContainsKey(key))
             {
-                IRepository<TEntity> repository = new GenericRepository<TEntity>(db);
+                IRepository<TEntity> repository = new Repository<TEntity>(db);
 
                 repositoriesFactory.Add(key, repository);
             }
 
-            // return repository
             return (IRepository<TEntity>)repositoriesFactory[key];
-        }
-
-        public void Save()
-        {
-            db.SaveChanges();
         }
 
         bool disposed = false;
@@ -61,7 +52,7 @@ namespace WebUniversity.DataAccess
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            db.SaveChanges();
         }
     }
 }

@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebUniversity.Models
+namespace DataAccessLayer.DBInitialization
 {
     static class DataGenerator
     {
-        static string fnamesPath = "Models//DataGenerator//fnames.xml";
-        static string snamesPath = "Models//DataGenerator//snames.xml";
+        static string fnamesPath = "DBInitialization//fnames.xml";
+        static string snamesPath = "DBInitialization//snames.xml";
 
         public static void InitializeDB(ModelBuilder modelBuilder)
         {

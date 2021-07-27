@@ -1,11 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebUniversity.Models;
+﻿using DataAccessLayer.DBInitialization;
+using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebUniversity.DataAccess
+namespace DataAccessLayer.EF
 {
     public class UniversityContext : DbContext
     {
@@ -20,7 +17,7 @@ namespace WebUniversity.DataAccess
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            DataGenerator.InitializeDB(modelBuilder);
+            //DataGenerator.InitializeDB(modelBuilder);
         }
     }
 }

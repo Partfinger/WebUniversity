@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SmartBreadcrumbs.Attributes;
-using System;
-using System.Collections.Generic;
+﻿using DataAccessLayer.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
-using WebUniversity.DataAccess;
-using WebUniversity.Models.Interfaces;
-using WebUniversity.Models.ViewModels;
+using WebUniversity.ViewModels;
 
 namespace WebUniversity.Controllers
 {
@@ -20,9 +15,15 @@ namespace WebUniversity.Controllers
             db = unitOfWork;
         }
 
-        protected IndexViewModel<T> Paginate(int page = 1, string search = null)
+        protected IndexViewModel<T> HandleIndex(int page = 1, string search = null)
         {
             var sourse = Filtrate(search);
+            
+            return Paginate(page, search, sourse);
+        }
+
+        protected IndexViewModel<T> Paginate(int page, string search, IQueryable<T> sourse)
+        {
             int count = sourse.Count();
             IndexViewModel<T> viewModel;
             if (count > 0)

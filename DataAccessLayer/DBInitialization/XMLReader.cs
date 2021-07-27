@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace WebUniversity.Models
+namespace DataAccessLayer.DBInitialization
 {
     static class XMLReader
     {

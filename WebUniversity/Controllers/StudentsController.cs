@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLayer.Interfaces;
+using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartBreadcrumbs.Attributes;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebUniversity.DataAccess;
-using WebUniversity.Models;
-using WebUniversity.Models.ViewModels;
+using WebUniversity.ViewModels;
 
 namespace WebUniversity.Controllers
 {
@@ -20,7 +18,7 @@ namespace WebUniversity.Controllers
         [Breadcrumb("Students")]
         public override IActionResult Index(int page = 1, string search = null)
         {
-            IndexViewModel<Student> viewModel = Paginate(page, search);
+            IndexViewModel<Student> viewModel = HandleIndex(page, search);
             db.GetRepository<Group>().GetAll().Load();
             return View(viewModel);
         }
