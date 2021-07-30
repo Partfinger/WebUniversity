@@ -1,0 +1,55 @@
+﻿@using WebUniversity.ViewModels;
+@model IndexViewModel<Group>;
+
+@{
+    Layout = "~/Views/Shared/ViewForIndex.cshtml";
+}
+
+@if (Model.Items is null)
+{
+    <div class="alert alert-warning" role="alert">
+        @if (Model.Searching)
+        {
+            @Localizer["NotFound"]
+        }
+        else
+        {
+            @Localizer["NoGroups"]
+        }
+    </div>
+}
+else
+{
+    <table class="table">
+        <caption class="captionTable">@Localizer["CaptionTable"]</caption>
+        <tr>
+            <td>@Localizer["Group"]</td>
+            <td>@Localizer["Course"]</td>
+            <td>@Localizer["StudentsCount"]</td>
+        </tr>
+        @{
+            int id = 0;
+        }
+        @foreach (Group group in Model.Items)
+        {
+            <tr>
+                <td>@Html.ActionLink(@group.Name, "Details", "Groups", new { @group.Id })</td>
+                @if (@group.Course is null)
+                {
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink(@group.Course.Name, "Details", "Courses", new { @group.Course.Id })</td>
+                }
+                <td>@ViewBag.countOfStudents[id++]</td>
+            </tr>
+        }
+    </table>
+}
+
+@section RightSide {
+    <nav class="navbar navbar-light bg-light">
+        <a class="btn btn-primary" asp-action="Create" role="button">@Localizer["AddNew"]</a>
+    </nav>
+}

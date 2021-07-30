@@ -1,0 +1,42 @@
+﻿@model Student
+<section>
+    <form method="post" asp-action="Update" asp-route-Id="@Model.Id">
+        <div>
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <div>
+                <label>@Localizer["FirstName"]</label>
+                <input type="text" asp-for="FirstName" value="@Model.FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div>
+                <label>@Localizer["LastName"]</label>
+                <input type="text" asp-for="LastName" value="@Model.LastName" />
+                <span asp-validation-for="LastName"></span>
+            </div>
+            <div>
+                <label>@Localizer["Group"]</label>
+                <select asp-for="GroupId">
+                    <option value="null">@Localizer["NotAssigned"]</option>
+                    @if (ViewBag.Groups != null)
+                    {
+                        @foreach (Group group in ViewBag.Groups)
+                        {
+                            @if (Model.GroupId == group.Id)
+                            {
+                                <option selected="selected" value="@group.Id">@group.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@group.Id">@group.Name</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="@Localizer["Save"]" />
+            </div>
+        </div>
+    </form>
+</section>

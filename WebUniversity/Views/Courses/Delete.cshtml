@@ -1,0 +1,5 @@
+﻿@model Course;
+<form method="post" asp-controller="Courses" asp-action="ConfirmDelete" asp-route-Id="@Model.Id">
+    <label>@String.Format(Localizer["ConfirmDeletingLabel"].Value,Model.Name)</label>
+    <input type="submit" value="@Localizer["ConfirmDeleting"]" />
+</form>

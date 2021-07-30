@@ -1,0 +1,53 @@
+﻿@using WebUniversity.ViewModels;
+@model IndexViewModel<Course>;
+
+@{
+    Layout = "~/Views/Shared/ViewForIndex.cshtml";
+}
+
+@if (Model.Items is null)
+{
+    <div class="alert alert-warning" role="alert">
+        @if (Model.Searching)
+        {
+            @Localizer["NoCourses"]
+        }
+        else
+        {
+            @Localizer["NotFound"]
+        }
+    </div>
+}
+else
+{
+    @if (Model.Searching)
+    {
+        <div class="alert alert-info" role="alert">
+            @Localizer["SearchingResults"]
+        </div>
+    }
+    <table class="table">
+        <caption class="captionTable">@Localizer["CaptionTable"]</caption>
+        <thead>
+            <tr>
+                <td>@Localizer["Course"]</td>
+                <td>@Localizer["CourseDescription"]</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Course course in Model.Items)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@course.Name, "Details", "Courses", new { @course.Id })</td>
+                    <td>@course.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section RightSide {
+    <nav class="navbar navbar-light bg-light">
+        <a class="btn btn-primary" asp-action="Create" role="button">@Localizer["AddNew"]</a>
+    </nav>
+}

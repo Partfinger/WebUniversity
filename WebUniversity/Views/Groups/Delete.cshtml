@@ -1,0 +1,5 @@
+﻿@model Group;
+<form method="post" asp-controller="Groups" asp-action="ConfirmDelete" asp-route-Id="@Model.Id">
+    <b>@String.Format(Localizer["ConfirmDeletingLabel"].Value, Model.Name)</b>
+    <p><input type="submit" value="@Localizer["ConfirmDeleting"]" /></p>
+</form>
